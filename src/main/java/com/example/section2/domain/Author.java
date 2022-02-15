@@ -1,13 +1,33 @@
 package com.example.section2.domain;
 
 
+import javax.persistence.*;
 import java.util.Set;
 
-public class Author {
+@Entity
+public class Author{
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
     private String firstName;
     private String lastName;
+
+    @ManyToMany(mappedBy = "authors")
     private Set<Book> books;
+
+    public Author(){
+
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public Author(String firstName, String lastName, Set<Book> books) {
         this.firstName = firstName;
